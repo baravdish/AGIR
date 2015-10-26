@@ -4,6 +4,7 @@
 #include "math/mathstool.h"
 #include "math/direction.h"
 #include "math/point.h"
+#include <iostream>
 
 System::System(double x, double y, double z,
                double angle, double a, double b, double c) :
@@ -17,6 +18,7 @@ System::System(double x, double y, double z,
 void System::convertToSystem(Ray &ray)const
 {
     ray.origin -= m_translation;
+
     if(!m_noRotation)
     {
         ray.origin *= m_rotation;

@@ -8,6 +8,7 @@
 #include <cmath>
 #include "math/mathstool.h"
 
+
 Scene::Scene(double dist, double size) :
     m_system(0.0, 0.0, dist),
     m_box(size, size, size),
@@ -31,11 +32,11 @@ Scene::Scene(double dist, double size) :
     m_objects.push_back(new Sphere(size/5, 7.0/10*size, size/10+size/5, 6.0/10*size, pink));
 
     // planes of the Cornell box
-    m_objects.push_back(new Plane(size, size, 0, 0, size, -M_PI_2, 1, 0, 0, beige));
+    m_objects.push_back(new Plane(size, size, 0, 0, size, -M_PI_2, 1, 0, 0, green));
     m_objects.push_back(new Plane(size, size, 0, size, size, -M_PI, 1, 0, 0, beige));
-    m_objects.push_back(new Plane(size, size, 0, size, 0, M_PI_2, 1, 0, 0, beige));
-    m_objects.push_back(new Plane(size, size, size, 0, 0, -M_PI_2, 0, 1, 0, red));
-    m_objects.push_back(new Plane(size, size, 0, 0, size, M_PI_2, 0, 1, 0, green));
+    m_objects.push_back(new Plane(size, size, 0, size, 0, M_PI_2, 1, 0, 0, pink));
+    m_objects.push_back(new Plane(size, size, size, 0, 0, -M_PI_2, 0, 1, 0, blue));
+    m_objects.push_back(new Plane(size, size, 0, 0, size, M_PI_2, 0, 1, 0, yellow));
 }
 
 Scene::~Scene()
@@ -46,8 +47,10 @@ Scene::~Scene()
 
 void Scene::getColor(const Ray &ray, double &r, double &g, double &b)const
 {
+
     // copy and convert in the system coordinate of the scene
     Ray localRay(ray);
+
     m_system.convertToSystem(localRay);
 
     // intersection checking with the box scene
